@@ -1,0 +1,12 @@
+[Unit]
+Description=dnscrypt-proxy listening socket
+Documentation=man:dnscrypt-proxy(8)
+After=network.target
+Wants=dnscrypt-proxy-resolvconf.service
+
+[Socket]
+ListenStream=127.0.2.1:53
+ListenDatagram=127.0.2.1:53
+
+[Install]
+WantedBy=sockets.target

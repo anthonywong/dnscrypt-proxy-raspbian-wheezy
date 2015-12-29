@@ -1,0 +1,20 @@
+[Unit]
+Description=DNSCrypt proxy resolvconf support
+Documentation=man:dnscrypt-proxy(8)
+After=dnscrypt-proxy.socket
+Requires=dnscrypt-proxy.socket
+ConditionFileIsExecutable=/sbin/resolvconf
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+Environment="DNSCRYPT_PROXY_LOCAL_ADDRESS=127.0.2.1:53"
+EnvironmentFile=-/etc/default/dnscrypt-proxy
+ExecStart=/bin/sh -c 'echo "nameserver ${DNSCRYPT_PROXY_LOCAL_ADDRESS}" \
+                    | cut -d ":" -f 1 \
+                    | /sbin/resolvconf -a lo.dnscrypt-proxy'
+ExecStop=/sbin/resolvconf -d lo.dnscrypt-proxy
+
+[Install]
+WantedBy=multi-user.target
+Also=dnscrypt-proxy.socket

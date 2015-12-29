@@ -1,0 +1,32 @@
+Source: dnscrypt-proxy
+Section: net
+Priority: optional
+Maintainer: Eric Dorland <eric@debian.org>
+Build-Depends: autotools-dev,
+               debhelper (>= 9),
+               dh-systemd,
+               libsodium-dev,
+               libsystemd-dev,
+               pkg-config
+Standards-Version: 3.9.6
+Homepage: http://dnscrypt.org
+Vcs-Git: git://anonscm.debian.org/users/eric/dnscrypt-proxy.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=users/eric/dnscrypt-proxy.git
+
+Package: dnscrypt-proxy
+Architecture: any
+Multi-Arch: foreign
+Depends: adduser, ${misc:Depends}, ${shlibs:Depends}
+Suggests: resolvconf
+Description: Tool for securing communications between a client and a DNS resolver
+ dnscrypt-proxy provides local service which can be used directly as your local
+ resolver or as a DNS forwarder, encrypting and authenticating requests using
+ the DNSCrypt protocol and passing them to an upstream server.
+ .
+ The DNSCrypt protocol uses high-speed high-security elliptic-curve
+ cryptography and is very similar to DNSCurve, but focuses on securing
+ communications between a client and its first-level resolver.
+ .
+ While not providing end-to-end security, it protects the local network, which
+ is often the weakest point of the chain, against man-in-the-middle attacks. It
+ also provides some confidentiality to DNS queries.

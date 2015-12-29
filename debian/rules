@@ -10,19 +10,12 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@  --with autotools-dev,systemd
+	dh $@  --with autotools-dev
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		--with-systemd \
 		--disable-ltdl-install \
 		--without-included-ltdl
-
-override_dh_install:
-	dh_install
-	install -m755 -d debian/dnscrypt-proxy/lib/systemd/system
-	install -m644 -p debian/dnscrypt-proxy-resolvconf.service \
-		debian/dnscrypt-proxy/lib/systemd/system
 
 override_dh_installinit:
 	dh_installinit --restart-after-upgrade

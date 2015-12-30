@@ -4,9 +4,7 @@ Priority: optional
 Maintainer: Eric Dorland <eric@debian.org>
 Build-Depends: autotools-dev,
                debhelper (>= 9),
-               dh-systemd,
                libsodium-dev,
-               libsystemd-dev,
                pkg-config
 Standards-Version: 3.9.6
 Homepage: http://dnscrypt.org
